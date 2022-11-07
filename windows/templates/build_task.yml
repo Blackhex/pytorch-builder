@@ -146,7 +146,7 @@ jobs:
 
   pool:
     ${{ if eq(parameters.msagent, 'true') }}:
-      vmImage: 'vs2017-win2016'
+      vmImage: 'vs2022-win2016'
     ${{ if eq(parameters.msagent, 'false') }}:
       name: 'pytorch'
 

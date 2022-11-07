@@ -183,11 +183,14 @@ if not exist "C:\\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v%CUDA_VERSION
     popd
 
     echo Installing VS integration...
-    if "%VC_YEAR%" == "2017" (
+    if "%VS_YEAR%" == "2017" (
         xcopy /Y "%SRC_DIR%\temp_build\cuda\CUDAVisualStudioIntegration\extras\visual_studio_integration\MSBuildExtensions\*.*" "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\Common7\IDE\VC\VCTargets\BuildCustomizations"
     )
-    if "%VC_YEAR%" == "2019" (
+    if "%VS_YEAR%" == "2019" (
         xcopy /Y "%SRC_DIR%\temp_build\cuda\CUDAVisualStudioIntegration\extras\visual_studio_integration\MSBuildExtensions\*.*" "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\MSBuild\Microsoft\VC\v160\BuildCustomizations"
+    )
+    if "%VS_YEAR%" == "2022" (
+        xcopy /Y "%SRC_DIR%\temp_build\cuda\CUDAVisualStudioIntegration\extras\visual_studio_integration\MSBuildExtensions\*.*" "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\BuildCustomizations"
     )
 
     echo Installing NvToolsExt...

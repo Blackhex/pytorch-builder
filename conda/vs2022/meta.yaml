@@ -1,0 +1,24 @@
+{% set vcver="17.3" %}
+{% set vcfeature="17" %}
+{% set vsyear="2022" %}
+{% set fullver="17.3.32929.385" %}
+
+package:
+  name: vs{{ vsyear }}
+  version: {{ fullver }}
+
+build:
+  skip: True  [not win]
+  script_env:
+    - VSDEVCMD_ARGS # [win]
+
+outputs:
+  - name: vs{{ vsyear }}_{{ cross_compiler_target_platform }}
+    script: install_activate.bat
+    track_features:
+      # VS 2019 is binary-compatible with VS 2017/vc 14.1 and 2015/vc14.  Tools are "v142".
+      strong:
+        - vc{{ vcfeature }}
+    about:
+      summary: Activation and version verification of MSVC {{ vcver }} (VS {{ vsyear }}) compiler
+      license: BSD 3-clause

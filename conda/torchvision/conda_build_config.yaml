@@ -1,9 +1,9 @@
 blas_impl:
   - mkl                        # [x86_64]
 c_compiler:
-  - vs2017                     # [win]
+  - vs2022                     # [win]
 cxx_compiler:
-  - vs2017                     # [win]
+  - vs2022                     # [win]
 python:
   - 3.5
   - 3.6
@@ -16,7 +16,7 @@ cross_compiler_target_platform:
 target_platform:
   - win-64                     # [win]
 vc:
-  - 14
+  - 17
 zip_keys:
   -                             # [win]
     - vc                        # [win]

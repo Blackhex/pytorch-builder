@@ -15,7 +15,7 @@ if ($args.Count -ne 0) {
 
 curl.exe --retry 3 -kL $VS_DOWNLOAD_LINK --output vs_installer.exe
 if ($LASTEXITCODE -ne 0) {
-    echo "Download of the VS 2017 installer failed"
+    echo "Download of the VS $VS_YEAR installer failed"
     exit 1
 }
 
@@ -23,6 +23,6 @@ $process = Start-Process "${PWD}\vs_installer.exe" -ArgumentList $VS_INSTALL_ARG
 Remove-Item -Path vs_installer.exe -Force
 $exitCode = $process.ExitCode
 if (($exitCode -ne 0) -and ($exitCode -ne 3010)) {
-    echo "VS 2017 installer exited with code $exitCode, which should be one of [0, 3010]."
+    echo "VS $VS_YEAR installer exited with code $exitCode, which should be one of [0, 3010]."
     exit 1
 }
