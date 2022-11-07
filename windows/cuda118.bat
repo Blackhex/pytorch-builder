@@ -16,7 +16,7 @@ IF ERRORLEVEL 1 goto :eof
 REM Check for optional components
 
 set USE_CUDA=
-set CMAKE_GENERATOR=Visual Studio 15 2017 Win64
+set CMAKE_GENERATOR=Visual Studio 17 2022 Win64
 
 IF "%NVTOOLSEXT_PATH%"=="" (
     IF EXIST "C:\Program Files\NVIDIA Corporation\NvToolsExt\lib\x64\nvToolsExt64_1.lib"  (

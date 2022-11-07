@@ -16,7 +16,7 @@ $VS_INSTALL_ARGS = @("--nocache","--quiet","--wait", "--add Microsoft.VisualStud
 
 curl.exe --retry 3 -kL $VS_DOWNLOAD_LINK --output vs_installer.exe
 if ($LASTEXITCODE -ne 0) {
-    echo "Download of the VS 2019 Version 16.8.5 installer failed"
+    echo "Download of the VS $VC_YEAR Version $VS_VERSION installer failed"
     exit 1
 }
 
@@ -35,7 +35,7 @@ $process = Start-Process "${PWD}\vs_installer.exe" -ArgumentList $VS_INSTALL_ARG
 Remove-Item -Path vs_installer.exe -Force
 $exitCode = $process.ExitCode
 if (($exitCode -ne 0) -and ($exitCode -ne 3010)) {
-    echo "VS 2019 installer exited with code $exitCode, which should be one of [0, 3010]."
+    echo "VS $VC_YEAR installer exited with code $exitCode, which should be one of [0, 3010]."
     curl.exe --retry 3 -kL $COLLECT_DOWNLOAD_LINK --output Collect.exe
     if ($LASTEXITCODE -ne 0) {
         echo "Download of the VS Collect tool failed."
