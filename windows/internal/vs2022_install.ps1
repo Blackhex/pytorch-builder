@@ -1,15 +1,15 @@
 # https://developercommunity.visualstudio.com/t/install-specific-version-of-vs-component/1142479
-# https://docs.microsoft.com/en-us/visualstudio/releases/2019/history#release-dates-and-build-numbers
+# https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-history#evergreen-bootstrappers
 
-# 16.8.6 BuildTools
-$VS_DOWNLOAD_LINK = "https://ossci-windows.s3.us-east-1.amazonaws.com/vs16.8.6_BuildTools.exe"
+# 17.4.1 BuildTools
+$VS_DOWNLOAD_LINK = "https://aka.ms/vs/17/release/vs_buildtools.exe"
 $COLLECT_DOWNLOAD_LINK = "https://aka.ms/vscollect.exe"
 $VS_INSTALL_ARGS = @("--nocache","--quiet","--wait", "--add Microsoft.VisualStudio.Workload.VCTools",
                                                      "--add Microsoft.Component.MSBuild",
                                                      "--add Microsoft.VisualStudio.Component.Roslyn.Compiler",
                                                      "--add Microsoft.VisualStudio.Component.TextTemplating",
                                                      "--add Microsoft.VisualStudio.Component.VC.CoreIde",
-                                                     "--add Microsoft.VisualStudio.Component.VC.Redist.14.Latest",
+                                                     "--add Microsoft.VisualStudio.Component.VC.Redist.17.Latest",
                                                      "--add Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Core",
                                                      "--add Microsoft.VisualStudio.Component.VC.Tools.x86.x64",
                                                      "--add Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Win81")
@@ -21,7 +21,7 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 if (Test-Path "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe") {
-    $existingPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -products "Microsoft.VisualStudio.Product.BuildTools" -version "[16, 17)" -property installationPath
+    $existingPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -products "Microsoft.VisualStudio.Product.BuildTools" -version "[17, 18)" -property installationPath
     if ($existingPath -ne $null) {
         if (!${env:CIRCLECI}) {
             echo "Found correctly versioned existing BuildTools installation in $existingPath"

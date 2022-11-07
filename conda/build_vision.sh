@@ -83,7 +83,8 @@ else
 fi
 
 if [[ "$OSTYPE" == "msys" ]]; then
-    time conda build -c $ANACONDA_USER --no-anaconda-upload vs2017
+    vs_package="vs$VS_YEAR"
+    time conda build -c $ANACONDA_USER --no-anaconda-upload $vs_package
 else
     time conda build -c $ANACONDA_USER --no-anaconda-upload --python 2.7 torchvision
 fi
