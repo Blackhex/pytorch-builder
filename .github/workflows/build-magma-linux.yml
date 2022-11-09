@@ -1,20 +1,8 @@
 name: build-linux-magma
 
 on:
-  push:
-    branches:
-      main
-    paths:
-      - magma/*
-      - magma/package_files/*
-      - common/install_conda.sh
-      - .github/workflows/build-magma-linux.yml
+  workflow_dispatch:
   pull_request:
-    paths:
-      - magma/*
-      - magma/package_files/*
-      - common/install_conda.sh
-      - .github/workflows/build-magma-linux.yml
 
 # For setup-miniconda, see https://github.com/conda-incubator/setup-miniconda/issues/179
 defaults:
@@ -27,7 +15,7 @@ env:
 
 jobs:
   build-linux-magma:
-    runs-on: linux.2xlarge
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         cuda_version: ["118", "117", "116", "115"]

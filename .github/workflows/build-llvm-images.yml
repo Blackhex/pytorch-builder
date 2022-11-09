@@ -1,16 +1,8 @@
 name: Build llvm docker images
 
 on:
-  push:
-    branches:
-      main
-    paths:
-      - llvm/*
-      - .github/workflows/build-llvm-images.yml
+  workflow_dispatch:
   pull_request:
-    paths:
-      - llvm/*
-      - .github/workflows/build-llvm-images.yml
 
 env:
   DOCKER_REGISTRY: "docker.io"
@@ -22,7 +14,7 @@ env:
 
 jobs:
   build:
-    runs-on: linux.2xlarge
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout PyTorch builder
         uses: actions/checkout@v2

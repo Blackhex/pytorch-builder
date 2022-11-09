@@ -21,20 +21,20 @@ on:
 
 jobs:
   generate-linux-conda-matrix:
-    uses: pytorch/test-infra/.github/workflows/generate_binary_build_matrix.yml@main
+    uses: ./.github/workflows/generate_binary_build_matrix.yml
     with:
       package-type: conda
       os: linux
       channel: ${{ inputs.channel }}
   generate-linux-wheel-matrix:
-    uses: pytorch/test-infra/.github/workflows/generate_binary_build_matrix.yml@main
+    uses: ./.github/workflows/generate_binary_build_matrix.yml
     with:
       package-type: wheel
       os: linux
       channel: ${{ inputs.channel }}
       with-py311: enable
   generate-linux-libtorch-matrix:
-    uses: pytorch/test-infra/.github/workflows/generate_binary_build_matrix.yml@main
+    uses: ./.github/workflows/generate_binary_build_matrix.yml
     with:
       package-type: libtorch
       os: linux
@@ -49,7 +49,7 @@ jobs:
     runs-on: ${{ matrix.validation_runner }}
     steps:
       - name: Validate binary conda
-        uses: pytorch/builder/.github/actions/validate-binary@main
+        uses: Blackhex/pytorch-builder/.github/actions/validate-binary@main
         with:
           gpu_arch_type: ${{ matrix.gpu_arch_type }}
           gpu_arch_ver: ${{ matrix.gpu_arch_version }}

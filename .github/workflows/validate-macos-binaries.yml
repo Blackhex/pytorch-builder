@@ -21,25 +21,25 @@ on:
 
 jobs:
   generate-macos-arm64-conda-matrix:
-    uses: pytorch/test-infra/.github/workflows/generate_binary_build_matrix.yml@main
+    uses: ./.github/workflows/generate_binary_build_matrix.yml
     with:
       package-type: conda
       os: macos-arm64
       channel: ${{ inputs.channel }}
   generate-macos-arm64-wheel-matrix:
-    uses: pytorch/test-infra/.github/workflows/generate_binary_build_matrix.yml@main
+    uses: ./.github/workflows/generate_binary_build_matrix.yml
     with:
       package-type: wheel
       os: macos-arm64
       channel: ${{ inputs.channel }}
   generate-macos-x86_64-conda-matrix:
-    uses: pytorch/test-infra/.github/workflows/generate_binary_build_matrix.yml@main
+    uses: ./.github/workflows/generate_binary_build_matrix.yml
     with:
       package-type: conda
       os: macos
       channel: ${{ inputs.channel }}
   generate-macos-x86_64-wheel-matrix:
-    uses: pytorch/test-infra/.github/workflows/generate_binary_build_matrix.yml@main
+    uses: ./.github/workflows/generate_binary_build_matrix.yml
     with:
       package-type: wheel
       os: macos
@@ -54,7 +54,7 @@ jobs:
     runs-on: ${{ matrix.validation_runner }}
     steps:
       - name: Validate binary conda
-        uses: pytorch/builder/.github/actions/validate-binary@main
+        uses: Blackhex/pytorch-builder/.github/actions/validate-binary@main
         with:
           gpu_arch_type: ${{ matrix.gpu_arch_type }}
           gpu_arch_ver: ${{ matrix.gpu_arch_version }}
@@ -73,7 +73,7 @@ jobs:
     runs-on: ${{ matrix.validation_runner }}
     steps:
       - name: Validate binary wheel
-        uses: pytorch/builder/.github/actions/validate-binary@main
+        uses: Blackhex/pytorch-builder/.github/actions/validate-binary@main
         with:
           gpu_arch_type: ${{ matrix.gpu_arch_type }}
           gpu_arch_ver: ${{ matrix.gpu_arch_version }}
@@ -92,7 +92,7 @@ jobs:
     runs-on: ${{ matrix.validation_runner }}
     steps:
       - name: Validate binary conda
-        uses: pytorch/builder/.github/actions/validate-binary@main
+        uses: Blackhex/pytorch-builder/.github/actions/validate-binary@main
         with:
           gpu_arch_type: ${{ matrix.gpu_arch_type }}
           gpu_arch_ver: ${{ matrix.gpu_arch_version }}
@@ -111,7 +111,7 @@ jobs:
     runs-on: ${{ matrix.validation_runner }}
     steps:
       - name: Validate binary wheel
-        uses: pytorch/builder/.github/actions/validate-binary@main
+        uses: Blackhex/pytorch-builder/.github/actions/validate-binary@main
         with:
           gpu_arch_type: ${{ matrix.gpu_arch_type }}
           gpu_arch_ver: ${{ matrix.gpu_arch_version }}

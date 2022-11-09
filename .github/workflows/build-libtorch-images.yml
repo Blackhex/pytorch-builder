@@ -1,20 +1,8 @@
 name: Build libtorch docker images
 
 on:
-  push:
-    branches:
-      main
-    paths:
-      - .github/workflows/build-libtorch-images.yml
-      - libtorch/Dockerfile
-      - libtorch/build_docker.sh
-      - 'common/*'
+  workflow_dispatch:
   pull_request:
-    paths:
-      - .github/workflows/build-libtorch-images.yml
-      - libtorch/Dockerfile
-      - 'common/*'
-      - libtorch/build_docker.sh
 
 env:
   DOCKER_REGISTRY: "docker.io"
@@ -25,7 +13,7 @@ env:
 
 jobs:
   build-docker-cuda:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         cuda_version: ["11.7", "11.6", "11.5", "11.3", "10.2"]
@@ -44,7 +32,7 @@ jobs:
         run: |
           libtorch/build_docker.sh
   build-docker-rocm:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         rocm_version: ["5.1.1", "5.2"]
@@ -63,7 +51,7 @@ jobs:
         run: |
           libtorch/build_docker.sh
   build-docker-cpu:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout PyTorch
         uses: actions/checkout@v2

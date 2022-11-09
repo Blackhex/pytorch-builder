@@ -1,20 +1,8 @@
 name: Build manywheel docker images
 
 on:
-  push:
-    branches:
-      main
-    paths:
-      - .github/workflows/build-manywheel-images.yml
-      - manywheel/Dockerfile
-      - manywheel/build_docker.sh
-      - 'common/*'
+  workflow_dispatch:
   pull_request:
-    paths:
-      - .github/workflows/build-manywheel-images.yml
-      - manywheel/Dockerfile
-      - 'common/*'
-      - manywheel/build_docker.sh
 
 env:
   DOCKER_REGISTRY: "docker.io"
@@ -25,7 +13,7 @@ env:
 
 jobs:
   build-docker-cuda:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         cuda_version: ["11.7", "11.6", "11.3"]
@@ -44,7 +32,7 @@ jobs:
         run: |
           manywheel/build_docker.sh
   build-docker-rocm:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         rocm_version: ["5.1.1", "5.2"]
@@ -63,7 +51,7 @@ jobs:
         run: |
           manywheel/build_docker.sh
   build-docker-cpu:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout PyTorch
         uses: actions/checkout@v2

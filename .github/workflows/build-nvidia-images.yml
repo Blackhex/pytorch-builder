@@ -1,16 +1,8 @@
 name: Build nvidia docker images
 
 on:
-  push:
-    branches:
-      main
-    paths:
-      - conda/build_nvidia_image.sh
-      - .github/workflows/build-nvidia-images.yml
+  workflow_dispatch:
   pull_request:
-    paths:
-      - conda/build_nvidia_image.sh
-      - .github/workflows/build-nvidia-images.yml
 
 # For setup-miniconda, see https://github.com/conda-incubator/setup-miniconda/issues/179
 defaults:
@@ -30,7 +22,7 @@ env:
 
 jobs:
   build-nvidia-docker:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - name: Build Nvidia Docker Image
         run: |

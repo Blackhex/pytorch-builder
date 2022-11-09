@@ -42,11 +42,6 @@ runs:
   steps:
     - name: Checkout PyTorch builder
       uses: actions/checkout@v2
-    - name: Check nvidia smi
-      if: ${{ inputs.gpu_arch_type == 'cuda' }}
-      shell: bash
-      run: |
-        nvidia-smi
     - name: Install Conda Linux
       if: ${{ inputs.target_os == 'linux' && inputs.python_version != '3.11' }}
       uses: conda-incubator/setup-miniconda@v2
